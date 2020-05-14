@@ -1,0 +1,30 @@
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Order Updated</th>
+          <th>Banking Details Updated</th>
+          <th>Customer Updated</th>
+          <th>Status</th>
+          <th>Rerun</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for event <- @events do %>
+          <tr>
+            <td><%= event.id %></td>
+            <td><%= event.order_updated %></td>
+            <td><%= event.banking_details_updated %></td>
+            <td><%= event.customer_updated %></td>
+             <%= if event.order_updated && event.banking_details_updated && event.customer_updated do %>
+            <td> ✅ </td>
+            <% else %>
+            <td> ❌ </td>
+            <%end %>
+            <td >  
+             <button phx-click="update_event" phx-value-id="<%= event.id %>">Update</button>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
